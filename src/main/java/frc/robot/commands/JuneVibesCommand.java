@@ -1,9 +1,6 @@
 package frc.robot.commands;
 
-import java.util.Set;
-
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.subsystems.JuneVibesSubsystem;
 
 public class JuneVibesCommand extends Command {
@@ -12,6 +9,11 @@ public class JuneVibesCommand extends Command {
     public JuneVibesCommand(JuneVibesSubsystem subsystem) {
         this.juneVibes = subsystem;
         addRequirements(juneVibes);
+    }
+
+    @Override
+    public void initialize() {
+        System.out.println("INITIALIZE");
     }
 
     @Override
