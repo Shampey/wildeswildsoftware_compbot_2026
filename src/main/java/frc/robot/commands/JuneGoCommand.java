@@ -3,10 +3,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.JuneVibesSubsystem;
 
-public class GoCommand extends Command {
+public class JuneGoCommand extends Command {
     JuneVibesSubsystem juneVibes;
 
-    public GoCommand(JuneVibesSubsystem juneVibes) {
+    public JuneGoCommand(JuneVibesSubsystem juneVibes) {
         this.juneVibes = juneVibes;
         addRequirements(juneVibes);
     }
