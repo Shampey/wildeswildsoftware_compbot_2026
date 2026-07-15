@@ -61,7 +61,7 @@ public class RobotContainer {
 
     julyVibes.setDefaultCommand(new JulyStopCommand(julyVibes));
 
-    m_driverController.leftBumper().whileTrue(new JuneGoCommand(juneVibes)
+    m_driverController.axisGreaterThan(0, 0.1).whileTrue(new JuneGoCommand(juneVibes)
     .alongWith(new JulyGoCommand(julyVibes)));
   }
 

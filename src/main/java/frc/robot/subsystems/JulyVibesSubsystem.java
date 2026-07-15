@@ -27,7 +27,8 @@ public class JulyVibesSubsystem extends SubsystemBase {
         var simState = motor.getSimState();
         sim.update(simState.getMotorVoltage());
         
-        line.setAngle(sim.getMotorPosition());
+        // line.setAngle(sim.getMotorPosition());
+        root.setPosition(0, sim.getMotorPosition());
 
         // System.out.println("July Velocity: " + sim.getMotorVelocity());
         // System.out.println("July Position: " + sim.getMotorPosition());
