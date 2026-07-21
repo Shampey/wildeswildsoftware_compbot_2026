@@ -5,73 +5,43 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.JulyGoCommand;
-import frc.robot.commands.JulyStopCommand;
-import frc.robot.commands.JuneGoCommand;
-import frc.robot.commands.JuneVibesCommand;
-import frc.robot.commands.JuneStopCommand;
-import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.JulyVibesSubsystem;
-import frc.robot.subsystems.JuneVibesSubsystem;
+import frc.robot.pong.PaddleSubsystem;
+import frc.robot.pong.PongGame;
+import frc.robot.pong.PongVisualizer;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
-/**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
- * subsystems, commands, and trigger mappings) should be declared here.
- */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  JuneVibesSubsystem juneVibes = new JuneVibesSubsystem();
-  JulyVibesSubsystem julyVibes = new JulyVibesSubsystem();
+  private final PongGame game;
+  private final PaddleSubsystem leftPaddle;
+  private final PaddleSubsystem rightPaddle;  
+  private final PongVisualizer visualizer;
 
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  private final CommandXboxController controller = new CommandXboxController(0);
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    // Configure the trigger bindings
-    configureBindings();
+    // TODO #4: construct the paddles with whatever IDs you want! 0 and 1 work well
+
+    // wiring up the paddles into the game manager class
+    game = new PongGame(leftPaddle, rightPaddle);
+    // class to visualize--don't worry about this right now unless you're curious.
+    visualizer = new PongVisualizer();
+
+    // TODO #5: bind each paddle's default command to a joystick axis using the moveCommand.
+    // left paddle -> controller.getLeftY
+    // right paddle -> controller.getLeftX
+    // the specific axes don't matter too much, just values for testing two players with one controller/keyboard
   }
 
-  /**
-   * Use this method to define your trigger->command mappings. Triggers can be created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
-   * predicate, or via the named factories in {@link
-   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
-   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
-   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
-   * joysticks}.
-   */
-  private void configureBindings() {
-    m_driverController.a().whileTrue(new JuneGoCommand(juneVibes));
-    m_driverController.b().whileTrue(new JuneStopCommand(juneVibes));
-
-    juneVibes.setDefaultCommand(new JuneStopCommand(juneVibes));
-
-    m_driverController.x().whileTrue(new JulyGoCommand(julyVibes));
-    m_driverController.y().whileTrue(new JulyStopCommand(julyVibes));
-
-    julyVibes.setDefaultCommand(new JulyStopCommand(julyVibes));
-
-    m_driverController.axisGreaterThan(0, 0.1).whileTrue(new JuneGoCommand(juneVibes)
-    .alongWith(new JulyGoCommand(julyVibes)));
+  public void robotPeriodic() {
+    game.update();
+    visualizer.update(game.getVisualizerData());
   }
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
+  // dont worry about this it does nothing for us right now
   public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    return Commands.none();
   }
 }
