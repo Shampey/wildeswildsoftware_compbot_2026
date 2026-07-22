@@ -34,8 +34,8 @@ public class RobotContainer {
     leftPaddle.setDefaultCommand(leftPaddle.stopPaddle());
     rightPaddle.setDefaultCommand(rightPaddle.stopPaddle());
 
-    controller.x().whileTrue(leftPaddle.moveCommand());
-    controller.x().onFalse(leftPaddle.stopPaddle());
+    controller.x().whileTrue(leftPaddle.moveUpCommand());
+    controller.b().whileTrue(leftPaddle.moveDownCommand());
 
     // TODO #5: bind each paddle's default command to a joystick axis using the moveCommand.
     // left paddle -> controller.getLeftY

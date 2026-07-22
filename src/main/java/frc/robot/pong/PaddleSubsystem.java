@@ -59,19 +59,27 @@ public class PaddleSubsystem extends SubsystemBase {
     // Hint: this.run(() -> ...) turns a Runnable (method) into a Command tied to
     // *this* subsystem.
     public Command stopPaddle() {
-        return Commands.runOnce(() -> move(0));
+        return Commands.run(() -> move(0), this);
     }
 
-    public double paddlePosition() {
-        return getPosition();
+
+    public Command moveUpCommand() { //Had DoubleSupplier input
+        return this.run(() -> {
+        if (getPosition() <= PongConstants.MAX_PADDLE_POSITION){
+        move(1);
+        } else {
+            move(0);
+        }
+    });
     }
 
-    public Command moveCommand() { //Had DoubleSupplier input
-        return this.runOnce(() -> 
-        move(1)
-        );
-        // double paddleMovement;
-        // return Commands.runOnce(() -> 
-        // );
+    public Command moveDownCommand() { //Had DoubleSupplier input
+        return this.run(() -> {
+        if (getPosition() >= PongConstants.MIN_PADDLE_POSITION){
+        move(-1);
+        } else {
+            move(0);
+        }
+    });
     }
 }
