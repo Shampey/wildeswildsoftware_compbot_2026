@@ -18,6 +18,7 @@ public class RobotContainer {
   private final PaddleSubsystem leftPaddle;
   private final PaddleSubsystem rightPaddle;  
   private final PongVisualizer visualizer;
+  private final Trigger trigger;
 
   private final CommandXboxController controller = new CommandXboxController(0);
 
@@ -39,6 +40,8 @@ public class RobotContainer {
     game.update();
     visualizer.update(game.getVisualizerData());
   }
+
+  
 
   // dont worry about this it does nothing for us right now
   public Command getAutonomousCommand() {

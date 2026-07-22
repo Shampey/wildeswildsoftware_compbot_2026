@@ -13,7 +13,7 @@ There are a few files you should be aware of. Most things are commented, but onc
 # Tasks
 Each task corresponds to a numbered TODO comment in the code.
 The first few tasks relate to programming the paddles' movement where we left off last time. Head to PaddleSubsystem.java
-1. Create the constructor to intialize each paddle's motor
+1. Create the constructor to intialize each paddle's motor:Done #2
 2. Program the movement of the paddle using a motor control request, but make sure the paddle doesn't move too far!
 3. Wrap your move method in a Command so that we can actually use it.
 The next tasks are in RobotContainer.java and relate to connecting all the functionality together.

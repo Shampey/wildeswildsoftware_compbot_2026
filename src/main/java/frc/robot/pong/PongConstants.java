@@ -17,4 +17,8 @@ public class PongConstants {
     public static double PADDLE_MAX_VOLTAGE = 10.0;
 
     public static double UNITS_PER_ROTATION = 3.0;
+
+    //Paddle constraints
+    public static double MAX_PADDLE_POSITION = 25.0;
+    public static double MIN_PADDLE_POSITION = -25.0;
 }

@@ -16,10 +16,10 @@ public class PaddleSubsystem extends SubsystemBase {
     private double position = 0;
     private final TalonFX paddleMotor;
 
-    // TODO #1: construct TalonFX as paddleMotor using the provided ID
+    // TODO #1: construct TalonFX as paddleMotor using the provided ID CHECXK
     // so the constructor stops erroring!
     public PaddleSubsystem(int id) {
-        
+        paddleMotor = new TalonFX(12);
     }
 
     public double getPosition() {
@@ -50,7 +50,7 @@ public class PaddleSubsystem extends SubsystemBase {
     //     (PongConstants.COURT_HEIGHT, mentioned in the very top comment)
     //     and make sure the paddle doesn't move out of bounds!
     public void move(double input) {
-
+        paddleMotor.setVoltage(input);
     }
 
     // TODO #3: wrap the move method in a command that we can bind to a joystick.
