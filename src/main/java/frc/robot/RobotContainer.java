@@ -8,6 +8,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.pong.PaddleSubsystem;
 import frc.robot.pong.PongGame;
 import frc.robot.pong.PongVisualizer;
+import edu.wpi.first.math.Pair;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -15,10 +16,10 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
   private final PongGame game;
-  private final PaddleSubsystem leftPaddle;
-  private final PaddleSubsystem rightPaddle;  
+  private final PaddleSubsystem leftPaddle = new PaddleSubsystem(12);
+  private final PaddleSubsystem rightPaddle = new PaddleSubsystem(14);  
   private final PongVisualizer visualizer;
-  private final Trigger trigger;
+  // private final Trigger trigger;
 
   private final CommandXboxController controller = new CommandXboxController(0);
 
@@ -30,16 +31,28 @@ public class RobotContainer {
     // class to visualize--don't worry about this right now unless you're curious.
     visualizer = new PongVisualizer();
 
+    leftPaddle.setDefaultCommand(leftPaddle.stopPaddle());
+    rightPaddle.setDefaultCommand(rightPaddle.stopPaddle());
+
+    controller.x().whileTrue(leftPaddle.moveCommand());
+    controller.x().onFalse(leftPaddle.stopPaddle());
+
     // TODO #5: bind each paddle's default command to a joystick axis using the moveCommand.
     // left paddle -> controller.getLeftY
     // right paddle -> controller.getLeftX
     // the specific axes don't matter too much, just values for testing two players with one controller/keyboard
   }
-
-  public void robotPeriodic() {
+ public void robotPeriodic() {
     game.update();
     visualizer.update(game.getVisualizerData());
   }
+
+  // public Trigger moveTrigger() {
+  //   return new Trigger(controller.x());
+  // }
+
+  // public double paddleMovement;
+  // moveTrigger.whileTrue(() -> paddleMovement += 5);
 
   
 

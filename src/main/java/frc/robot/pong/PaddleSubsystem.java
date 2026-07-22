@@ -4,6 +4,8 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.controls.VoltageOut;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
+
 import java.util.function.DoubleSupplier;
 
 public class PaddleSubsystem extends SubsystemBase {
@@ -56,7 +58,20 @@ public class PaddleSubsystem extends SubsystemBase {
     // TODO #3: wrap the move method in a command that we can bind to a joystick.
     // Hint: this.run(() -> ...) turns a Runnable (method) into a Command tied to
     // *this* subsystem.
-    public Command moveCommand(DoubleSupplier input) {
+    public Command stopPaddle() {
+        return Commands.runOnce(() -> move(0));
+    }
 
+    public double paddlePosition() {
+        return getPosition();
+    }
+
+    public Command moveCommand() { //Had DoubleSupplier input
+        return this.runOnce(() -> 
+        move(1)
+        );
+        // double paddleMovement;
+        // return Commands.runOnce(() -> 
+        // );
     }
 }
