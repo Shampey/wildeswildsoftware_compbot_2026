@@ -32,15 +32,6 @@ public class PaddleSubsystem extends SubsystemBase {
         position = paddleMotor.getPosition().getValueAsDouble() * PongConstants.UNITS_PER_ROTATION;
     }
 
-    /**
-     * A method to move the paddle up and down! 
-     *
-     * The input variable will be coming from a joystick axis, where
-     * positive = up and negative = down, ranging from [-1, 1]
-     *
-     * TODO: update position based on input scalar, then clamp so the 
-     * paddle stays inside the court
-     */
     public void move(double input) {
         paddleMotor.setControl(new VoltageOut(1.0 * input));
     }

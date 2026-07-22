@@ -9,5 +9,8 @@ public class PongConstants {
     public static double PADDLE_SIZE = 10.0;
     public static double PADDLE_KV = 10.0;
 
+    public static double BALL_SIZE = 1.0;
+    public static double BALL_SPEED = 0.25;
+
     public static double UNITS_PER_ROTATION = 3.0;
 }
