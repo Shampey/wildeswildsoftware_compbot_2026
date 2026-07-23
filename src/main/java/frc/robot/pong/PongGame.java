@@ -41,7 +41,14 @@ public class PongGame {
         }
 
         // Paddle collision checks
-        if (((ballX < PongConstants.LEFT_PADDLE_X) && (Math.abs(ballY - leftPaddle.getPosition() - PongConstants.COURT_HEIGHT / 2) < PongConstants.PADDLE_SIZE / 2)) || ((ballX > PongConstants.RIGHT_PADDLE_X) && (Math.abs(ballY - rightPaddle.getPosition() - PongConstants.COURT_HEIGHT / 2) < PongConstants.PADDLE_SIZE / 2))) {
+        boolean isAtLeftPaddleHeight = (Math.abs(ballY - leftPaddle.getPosition() - PongConstants.COURT_HEIGHT / 2) < PongConstants.PADDLE_SIZE / 2);
+        boolean isAtRightPaddleHeight = (Math.abs(ballY - rightPaddle.getPosition() - PongConstants.COURT_HEIGHT / 2) < PongConstants.PADDLE_SIZE / 2);
+
+        // nice variable names
+        boolean isBallInRightSideOfLeftPaddle = ballX < PongConstants.LEFT_PADDLE_X + 0.5 && ballX > PongConstants.LEFT_PADDLE_X - 0.5;
+        boolean isBallInLeftSideOfRightPaddle = ballX > PongConstants.RIGHT_PADDLE_X - 0.5 && ballX < PongConstants.RIGHT_PADDLE_X + 0.5;
+
+        if ((isBallInRightSideOfLeftPaddle && isAtLeftPaddleHeight) || (isBallInLeftSideOfRightPaddle && isAtRightPaddleHeight)) {
             ballDirectionX = !ballDirectionX;
         }
     }

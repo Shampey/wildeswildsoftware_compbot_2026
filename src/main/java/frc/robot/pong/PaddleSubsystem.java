@@ -33,7 +33,14 @@ public class PaddleSubsystem extends SubsystemBase {
     }
 
     public void move(double input) {
-        paddleMotor.setControl(new VoltageOut(1.0 * input));
+        boolean atTop = position + PongConstants.PADDLE_SIZE / 2 >= PongConstants.COURT_HEIGHT / 2;
+        boolean atBottom = position - PongConstants.PADDLE_SIZE / 2 <= -PongConstants.COURT_HEIGHT / 2;
+
+        if ((atTop && input > 0) || (atBottom && input < 0)) {
+            input = 0;
+        }
+
+        paddleMotor.setControl(new VoltageOut(1.5 * input));
     }
 
     public Command moveCommand(DoubleSupplier input) {
