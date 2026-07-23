@@ -16,5 +16,10 @@ public class PongConstants {
     public static double PADDLE_KV = 10.0;
     public static double PADDLE_MAX_VOLTAGE = 10.0;
 
+    // ball constants! again, try changing them if you want to
+    // see some fun results.
+    public static double BALL_SIZE = 1.0;
+    public static double BALL_SPEED = 0.25;
+
     public static double UNITS_PER_ROTATION = 3.0;
 }
