@@ -22,10 +22,6 @@ public class PongGame {
      * and paddle collision will eventually live.
      */
     public void update() {
-        updateBall();
-    }
-
-    private void updateBall() {
         ballX += ballDirectionX ? PongConstants.BALL_SPEED : -PongConstants.BALL_SPEED;
         ballY += ballVelocityY;
 
