@@ -9,6 +9,9 @@ import frc.robot.pong.PaddleSubsystem;
 import frc.robot.pong.PaddleSubsystemRight;
 import frc.robot.pong.PongGame;
 import frc.robot.pong.PongVisualizer;
+
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.math.Pair;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -35,11 +38,14 @@ public class RobotContainer {
     leftPaddle.setDefaultCommand(leftPaddle.stopPaddle());
     rightPaddle.setDefaultCommand(rightPaddle.stopPaddle());
 
-    controller.x().whileTrue(leftPaddle.moveUpCommand());
-    controller.b().whileTrue(leftPaddle.moveDownCommand());
+    moveTriggerLeft().whileTrue(leftPaddle.moveUpCommand(getLeftYValue()));
+    moveTriggerRight().whileTrue(rightPaddle.moveUpCommand(getRightYValue()));
+    // controller.left().whileTrue(leftPaddle.moveDownCommand());
 
-    controller.y().whileTrue(rightPaddle.moveUpCommand());
-    controller.a().whileTrue(rightPaddle.moveDownCommand());
+    // controller.y().whileTrue(rightPaddle.moveUpCommand());
+    // controller.a().whileTrue(rightPaddle.moveDownCommand());
+    
+    // controller.getRightY().whileTrue(rightPaddle.moveUpAndDownCommand());
     
     // TODO #5: bind each paddle's default command to a joystick axis using the moveCommand.
     // left paddle -> controller.getLeftY
@@ -49,8 +55,24 @@ public class RobotContainer {
  public void robotPeriodic() {
     game.update();
     visualizer.update(game.getVisualizerData());
+    // System.out.println(moveTrigger().getAsBoolean());
   }
 
+  public Trigger moveTriggerLeft() {
+    return new Trigger (() -> controller.getLeftY() >= 0.01 || controller.getLeftY() <= -0.01);
+  }
+
+  public Trigger moveTriggerRight() {
+    return new Trigger (() -> controller.getRightY() >= 0.01 || controller.getRightY() <= -0.01);
+  }
+
+  public DoubleSupplier getLeftYValue() {
+    return () -> controller.getLeftY();
+  }
+
+  public DoubleSupplier getRightYValue() {
+    return () -> controller.getRightY();
+  }
   // public Trigger moveTrigger() {
   //   return new Trigger(controller.x());
   // }
