@@ -2,9 +2,9 @@ package frc.robot.pong;
 
 public class PongGame {
     private final PaddleSubsystem leftPaddle;
-    private final PaddleSubsystem rightPaddle;
+    private final PaddleSubsystemRight rightPaddle;
 
-    public PongGame(PaddleSubsystem leftPaddle, PaddleSubsystem rightPaddle) {
+    public PongGame(PaddleSubsystem leftPaddle, PaddleSubsystemRight rightPaddle) {
         this.leftPaddle = leftPaddle;
         this.rightPaddle = rightPaddle;
     }

@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.pong.PaddleSubsystem;
+import frc.robot.pong.PaddleSubsystemRight;
 import frc.robot.pong.PongGame;
 import frc.robot.pong.PongVisualizer;
 import edu.wpi.first.math.Pair;
@@ -17,7 +18,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   private final PongGame game;
   private final PaddleSubsystem leftPaddle = new PaddleSubsystem(12);
-  private final PaddleSubsystem rightPaddle = new PaddleSubsystem(14);  
+  private final PaddleSubsystemRight rightPaddle = new PaddleSubsystemRight(14);  
   private final PongVisualizer visualizer;
   // private final Trigger trigger;
 
@@ -37,6 +38,9 @@ public class RobotContainer {
     controller.x().whileTrue(leftPaddle.moveUpCommand());
     controller.b().whileTrue(leftPaddle.moveDownCommand());
 
+    controller.y().whileTrue(rightPaddle.moveUpCommand());
+    controller.a().whileTrue(rightPaddle.moveDownCommand());
+    
     // TODO #5: bind each paddle's default command to a joystick axis using the moveCommand.
     // left paddle -> controller.getLeftY
     // right paddle -> controller.getLeftX

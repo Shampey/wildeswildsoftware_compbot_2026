@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 
 import java.util.function.DoubleSupplier;
 
-public class PaddleSubsystem extends SubsystemBase {
+public class PaddleSubsystemRight extends SubsystemBase {
     // Paddle position in arbitrary "court units."
     // Represents the vertical displacement from the center of the
     // paddle's centered starting point. 0 = centered. Ranges from
@@ -20,8 +20,8 @@ public class PaddleSubsystem extends SubsystemBase {
 
     // TODO #1: construct TalonFX as paddleMotor using the provided ID CHECXK
     // so the constructor stops erroring!
-    public PaddleSubsystem(int id) {
-        paddleMotor = new TalonFX(12);
+    public PaddleSubsystemRight(int id) {
+        paddleMotor = new TalonFX(14);
     }
 
     public double getPosition() {
