@@ -26,6 +26,7 @@ public class RobotContainer {
   // private final Trigger trigger;
 
   private final CommandXboxController controller = new CommandXboxController(0);
+  private final CommandXboxController playerTwoController = new CommandXboxController(1);
 
   public RobotContainer() {
     // TODO #4: construct the paddles with whatever IDs you want! 0 and 1 work well
@@ -40,12 +41,6 @@ public class RobotContainer {
 
     moveTriggerLeft().whileTrue(leftPaddle.moveUpCommand(getLeftYValue()));
     moveTriggerRight().whileTrue(rightPaddle.moveUpCommand(getRightYValue()));
-    // controller.left().whileTrue(leftPaddle.moveDownCommand());
-
-    // controller.y().whileTrue(rightPaddle.moveUpCommand());
-    // controller.a().whileTrue(rightPaddle.moveDownCommand());
-    
-    // controller.getRightY().whileTrue(rightPaddle.moveUpAndDownCommand());
     
     // TODO #5: bind each paddle's default command to a joystick axis using the moveCommand.
     // left paddle -> controller.getLeftY
@@ -55,7 +50,6 @@ public class RobotContainer {
  public void robotPeriodic() {
     game.update();
     visualizer.update(game.getVisualizerData());
-    // System.out.println(moveTrigger().getAsBoolean());
   }
 
   public Trigger moveTriggerLeft() {

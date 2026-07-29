@@ -47,13 +47,35 @@ public class PongGame {
             ballGoingUp = true;
         }
 
-        if (ballX > PongConstants.COURT_WIDTH / 2 - 10) {
-            // ballX = PongConstants.COURT_WIDTH / 2;
+        if (ballX > PongConstants.COURT_WIDTH / 2 + 5) {
+            //right side
             ballGoingRight = false;
-        } else if (ballX < -PongConstants.COURT_WIDTH / 2) {
-            // ballX = PongConstants.COURT_WIDTH / 2;
+            ballX = 0;
+            rightScore ++;
+            System.out.println("right score " + rightScore);
+            System.out.println(leftScore + " : " + rightScore);
+        } else if (ballX < -PongConstants.COURT_WIDTH / 2 - 5) {
+            //left side
             ballGoingRight = true;
+            ballX = 0;
+            leftScore ++;
+            System.out.println("left score " + leftScore);
+            System.out.println(leftScore + " : " + rightScore);
         }
+
+        //ball bouncing off paddles
+        if ((ballX <= -65 + 0.01 && ballX >= -65 - 0.01) && 
+        leftPaddle.getPosition() + 25 + PongConstants.PADDLE_SIZE / 2 >= ballY && 
+        leftPaddle.getPosition() + 25 - PongConstants.PADDLE_SIZE / 2 <= ballY) {
+            ballGoingRight = !ballGoingRight;
+        } else if ((ballX <= 65 + 0.01 - 10 && ballX >= 65 - 0.01 - 10) &&
+         (rightPaddle.getPosition() + 25 + PongConstants.PADDLE_SIZE / 2 >= ballY &&
+          rightPaddle.getPosition() + 25 - PongConstants.PADDLE_SIZE / 2 <= ballY)) {
+            ballGoingRight = !ballGoingRight;
+        
+        }
+
+
 
         // System.out.println("X: " + ballX);
         // System.out.println("Y: " + ballY);

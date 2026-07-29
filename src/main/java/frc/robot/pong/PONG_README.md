@@ -26,5 +26,7 @@ Since the ball isn't a subsystem and is completely simulated, this code likely w
 7. Move the ball around and check to make sure it stays in bounds each frame
 8. Make the ball collide with the actual paddles so the game is playable
 
++ (Andrew's) 9. make the ball bounce like the actual Pong game. 
+
 Congratulations on making Pong inside the robot simulation!! While this implementation may seem a bit detached, all these skills you're learning are completely applicable to the real robot code--motor control, java basics, and general problem solving skills.
 If you finish all that, maybe try to make the paddle/ball interaction a bit truer to the traditional pong game if you are interested. If not, great work on Pong and get excited for your next project!

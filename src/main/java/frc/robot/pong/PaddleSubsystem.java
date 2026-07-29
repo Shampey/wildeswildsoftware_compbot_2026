@@ -65,9 +65,9 @@ public class PaddleSubsystem extends SubsystemBase {
 
     public Command moveUpCommand(DoubleSupplier joyValue) { //Had DoubleSupplier input     
         return this.run(() -> {
-            System.out.println(joyValue);
+            // System.out.println("Left" + joyValue.getAsDouble());
         if (getPosition() <= PongConstants.MAX_PADDLE_POSITION && joyValue.getAsDouble() != 0 && getPosition() >= PongConstants.MIN_PADDLE_POSITION){
-            move((joyValue.getAsDouble() > 0) ? -5 : 5);
+            move((joyValue.getAsDouble() > 0) ? -(joyValue.getAsDouble() * 5) : -(joyValue.getAsDouble() * 5));
         } else if (getPosition() <= PongConstants.MIN_PADDLE_POSITION) {
             move(1);
         } else {

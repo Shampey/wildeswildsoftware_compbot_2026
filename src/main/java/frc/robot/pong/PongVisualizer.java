@@ -20,9 +20,7 @@ public class PongVisualizer {
         this.leftPaddle = leftPaddleRoot.append(new MechanismLigament2d("leftPaddle", PongConstants.PADDLE_SIZE, 90));
         this.rightPaddle = rightPaddleRoot.append(new MechanismLigament2d("rightPaddle", PongConstants.PADDLE_SIZE, 90));
         this.ball = ballRoot.append(new MechanismLigament2d("ball", PongConstants.BALL_SIZE, 90));
-
-        SmartDashboard.putData("PONG", court);
-        
+        SmartDashboard.putData("PONG", court);       
     }
 
     public void update(PongVisualizerData data) {

@@ -65,9 +65,9 @@ public class PaddleSubsystemRight extends SubsystemBase {
 
     public Command moveUpCommand(DoubleSupplier joyValue) { //Had DoubleSupplier input     
         return this.run(() -> {
-            System.out.println(joyValue);
+            // System.out.println(joyValue.getAsDouble() * 5);
         if (getPosition() <= PongConstants.MAX_PADDLE_POSITION && joyValue.getAsDouble() != 0 && getPosition() >= PongConstants.MIN_PADDLE_POSITION){
-            move((joyValue.getAsDouble() > 0) ? -5 : 5);
+            move((joyValue.getAsDouble() > 0) ? -(joyValue.getAsDouble() * 5) : -(joyValue.getAsDouble() * 5));
         } else if (getPosition() <= PongConstants.MIN_PADDLE_POSITION) {
             move(1);
         } else {
@@ -75,20 +75,5 @@ public class PaddleSubsystemRight extends SubsystemBase {
         }
     });
     }
-
-    // public Command moveDownCommand() { //Had DoubleSupplier input
-    //     return this.run(() -> {
-    //     if (getPosition() >= PongConstants.MIN_PADDLE_POSITION){
-    //     move(-5);
-    //     } else {
-    //         move(0);
-    //     }
-    // });
-    // }
-
-    // public Command moveUpAndDownCommand() {
-    //     return this.run(() -> {
-    //     });
-    // }
 
 }
