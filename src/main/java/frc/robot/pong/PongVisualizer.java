@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class PongVisualizer {
     private final Mechanism2d court = new Mechanism2d(PongConstants.COURT_WIDTH, PongConstants.COURT_HEIGHT);
+    public PongGame ponggame;
 
     private final MechanismRoot2d leftPaddleRoot = court.getRoot("leftPaddleRoot", 0, PongConstants.COURT_HEIGHT / 2);
     private final MechanismRoot2d rightPaddleRoot = court.getRoot("rightPaddleRoot", PongConstants.COURT_WIDTH, PongConstants.COURT_HEIGHT / 2);
@@ -15,10 +16,12 @@ public class PongVisualizer {
     private final MechanismRoot2d lTopRoot = court.getRoot("lTopRoot", 50, 50);
     private final MechanismRoot2d lMidRoot = court.getRoot("lMidRoot", 50, 45);
     private final MechanismRoot2d lBotRoot = court.getRoot("lBotRoot", 50, 40);
-    private final MechanismRoot2d lTopRRoot = court.getRoot("lTopRRoot", 53, 47.5);
-    private final MechanismRoot2d lBotRRoot = court.getRoot("lBotRRoot", 53, 42.5);
-    private final MechanismRoot2d lTopLRoot = court.getRoot("lTopLRoot", 47, 47.5);
-    private final MechanismRoot2d lBotLRoot = court.getRoot("lBotLRoot", 47, 42.5);
+    private final MechanismRoot2d lTopRRoot = court.getRoot("lTopRRoot", 54, 46);
+    private final MechanismRoot2d lBotRRoot = court.getRoot("lBotRRoot", 54, 41);
+    private final MechanismRoot2d lTopLRoot = court.getRoot("lTopLRoot", 49, 46);
+    private final MechanismRoot2d lBotLRoot = court.getRoot("lBotLRoot", 49, 41);
+
+
 
     private final MechanismLigament2d leftPaddle;
     private final MechanismLigament2d rightPaddle;
@@ -52,5 +55,6 @@ public class PongVisualizer {
         leftPaddleRoot.setPosition(PongConstants.LEFT_PADDLE_X, PongConstants.COURT_HEIGHT / 2 - PongConstants.PADDLE_SIZE / 2 + data.leftPaddlePosition());
         rightPaddleRoot.setPosition(PongConstants.RIGHT_PADDLE_X, PongConstants.COURT_HEIGHT / 2 - PongConstants.PADDLE_SIZE / 2 + data.rightPaddlePosition());
         ballRoot.setPosition(data.ballX(), data.ballY());
+        // lTopRoot.setPosition(ponggame.checkForScoreShow("lTop"), 50);
     }
 }

@@ -1,5 +1,6 @@
 package frc.robot.pong;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 
 public class PongGame {
@@ -11,6 +12,14 @@ public class PongGame {
     
     public boolean ballGoingRight = false;
     public boolean ballGoingUp = false;
+
+    public boolean lTopShow;
+    public boolean lMidShow;
+    public boolean lBotShow;
+    public boolean lTopRShow;
+    public boolean lBotRShow;
+    public boolean lTopLShow;
+    public boolean lBotLShow;
 
     public int leftScore;
     public int rightScore;
@@ -51,14 +60,14 @@ public class PongGame {
             //right side
             ballGoingRight = false;
             ballX = 0;
-            rightScore ++;
+            leftScore ++;
             System.out.println("right score " + rightScore);
             System.out.println(leftScore + " : " + rightScore);
         } else if (ballX < -PongConstants.COURT_WIDTH / 2 - 5) {
             //left side
             ballGoingRight = true;
             ballX = 0;
-            leftScore ++;
+            rightScore ++;
             System.out.println("left score " + leftScore);
             System.out.println(leftScore + " : " + rightScore);
         }
@@ -75,34 +84,117 @@ public class PongGame {
         
         }
 
+        if (leftScore == 0) {
+            lTopShow = true;
+            lMidShow = false;    
+            lBotShow = true;
+            lTopRShow = true;
+            lBotRShow = true;
+            lTopLShow = true;
+            lBotLShow = true;
+        } else if(leftScore == 1) {
+            lTopShow = false;
+            lMidShow = false;    
+            lBotShow = false;
+            lTopRShow = true;
+            lBotRShow = true;
+            lTopLShow = false;
+            lBotLShow = false;
+        } else if (leftScore == 2) {
+            lTopShow = true;
+            lMidShow = true;    
+            lBotShow = true;
+            lTopRShow = true;
+            lBotRShow = false;
+            lTopLShow = false;
+            lBotLShow = true;
+        } else if (leftScore == 3) {
+            lTopShow = true;
+            lMidShow = true;    
+            lBotShow = true;
+            lTopRShow = true;
+            lBotRShow = true;
+            lTopLShow = false;
+            lBotLShow = true;
+        } else if (leftScore == 4) {
+            lTopShow = false;
+            lMidShow = true;    
+            lBotShow = false;
+            lTopRShow = true;
+            lBotRShow = true;
+            lTopLShow = true;
+            lBotLShow = true;
+        } else if (leftScore == 5) {
+            lTopShow = true;
+            lMidShow = true;    
+            lBotShow = true;
+            lTopRShow = false;
+            lBotRShow = true;
+            lTopLShow = true;
+            lBotLShow = false;
+        } else if (leftScore == 6) {
+            lTopShow = true;
+            lMidShow = true;    
+            lBotShow = true;
+            lTopRShow = false;
+            lBotRShow = true;
+            lTopLShow = true;
+            lBotLShow = true;
+        } else if (leftScore == 7) {
+            lTopShow = true;
+            lMidShow = false;    
+            lBotShow = false;
+            lTopRShow = true;
+            lBotRShow = true;
+            lTopLShow = false;
+            lBotLShow = false;
+        } else if (leftScore == 8) {
+            lTopShow = true;
+            lMidShow = true;    
+            lBotShow = true;
+            lTopRShow = true;
+            lBotRShow = true;
+            lTopLShow = true;
+            lBotLShow = true;
+        } else if (leftScore == 9) {
+            lTopShow = true;
+            lMidShow = true;    
+            lBotShow = true;
+            lTopRShow = true;
+            lBotRShow = true;
+            lTopLShow = true;
+            lBotLShow = false;
+        } else {
+            
+        }
 
 
-        // System.out.println("X: " + ballX);
-        // System.out.println("Y: " + ballY);
+        //  *  (get dimensions from PongConstants), reflect its Y velocity. If it hits
+        //  *  either side of the court, increment the relevant player's score
+        //  * Note: make sure to respawn the ball if it goes off the screen! First to one
+        //  * point Pong doesn't sound as good.
+        //  */
+
+//         // /*
+        //  * TODO #8
+        //  * Paddle Collision! 
+        //  * 1. For a simpler solution (what I implemented), simply reflect the ball's
+        //  *  X velocity when it hits a paddle.
+        //  */
+    }
+
+    public double checkForScoreShow(String stickName) {
+        if (stickName == "lTop") {
+            return (lTopShow) ? 50 : 1000;
+        }
+        if (stickName == "lMid") {
+            return (lMidShow) ? 50: 1000;
+        }
+        else {
+            System.out.println("Not working");
+            return 0;
+        }
         
-        /*
-         * TODO #7      CHECK
-         * 1. update ball position based on velocity
-         * 2. court dimension checks--if the ball hits the top of the pong window
-         *  (get dimensions from PongConstants), reflect its Y velocity. If it hits
-         *  either side of the court, increment the relevant player's score
-         * Note: make sure to respawn the ball if it goes off the screen! First to one
-         * point Pong doesn't sound as good.
-         */
-
-        /*
-         * TODO #8
-         * Paddle Collision! 
-         * 1. For a simpler solution (what I implemented), simply reflect the ball's
-         *  X velocity when it hits a paddle.
-         * Note: remember that the paddle coordinates are represented by [-25, 25]
-         *  If you want, you can represent the ball this way too--I didn't, which
-         *  made it a bit more challenging.
-         * 2. (OPTIONAL) If you want a more difficult task, you could look into
-         *  how Pong actually reflects the ball--it's not as simple. I believe
-         *  it takes into account the paddle's velocity and where on the paddle
-         *  the ball hits (farther from the center reflects at a different angle)
-         */
     }
 
     // transmit relevant game data to the visualizer. don't worry about this yet

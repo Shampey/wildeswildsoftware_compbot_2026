@@ -57,7 +57,7 @@ public class RobotContainer {
   }
 
   public Trigger moveTriggerRight() {
-    return new Trigger (() -> controller.getRightY() >= 0.01 || controller.getRightY() <= -0.01);
+    return new Trigger (() -> playerTwoController.getLeftY() >= 0.01 || playerTwoController.getLeftY() <= -0.01);
   }
 
   public DoubleSupplier getLeftYValue() {
@@ -65,7 +65,7 @@ public class RobotContainer {
   }
 
   public DoubleSupplier getRightYValue() {
-    return () -> controller.getRightY();
+    return () -> playerTwoController.getLeftY();
   }
   // public Trigger moveTrigger() {
   //   return new Trigger(controller.x());
