@@ -21,6 +21,15 @@ public class PongVisualizer {
     private final MechanismRoot2d lTopLRoot = court.getRoot("lTopLRoot", 49, 46);
     private final MechanismRoot2d lBotLRoot = court.getRoot("lBotLRoot", 49, 41);
 
+    //right side score
+    private final MechanismRoot2d rTopRoot = court.getRoot("rTopRoot", 70, 50);
+    private final MechanismRoot2d rMidRoot = court.getRoot("rMidRoot", 70, 45);
+    private final MechanismRoot2d rBotRoot = court.getRoot("rBotRoot", 70, 40);
+    private final MechanismRoot2d rTopRRoot = court.getRoot("rTopRRoot", 74, 46);
+    private final MechanismRoot2d rBotRRoot = court.getRoot("rBotRRoot", 74, 41);
+    private final MechanismRoot2d rTopLRoot = court.getRoot("rTopLRoot", 69, 46);
+    private final MechanismRoot2d rBotLRoot = court.getRoot("rBotLRoot", 69, 41);
+
 
 
     private final MechanismLigament2d leftPaddle;
@@ -34,6 +43,15 @@ public class PongVisualizer {
     private final MechanismLigament2d lBotR;
     private final MechanismLigament2d lTopL;
     private final MechanismLigament2d lBotL; 
+
+    //right side
+    private final MechanismLigament2d rTop;
+    private final MechanismLigament2d rMid;
+    private final MechanismLigament2d rBot;
+    private final MechanismLigament2d rTopR;
+    private final MechanismLigament2d rBotR;
+    private final MechanismLigament2d rTopL;
+    private final MechanismLigament2d rBotL; 
     
     public PongVisualizer() {
         this.leftPaddle = leftPaddleRoot.append(new MechanismLigament2d("leftPaddle", PongConstants.PADDLE_SIZE, 90));
@@ -47,6 +65,14 @@ public class PongVisualizer {
         this.lBotR = lBotRRoot.append(new MechanismLigament2d("lBotRRoot", 3, 90));
         this.lTopL = lTopLRoot. append(new MechanismLigament2d("lTopLRoot", 3, 90));
         this.lBotL = lBotLRoot. append(new MechanismLigament2d("lBotLRoot", 3, 90));
+
+        this.rTop = rTopRoot.append(new MechanismLigament2d("rTop", 3, 0));
+        this.rMid = rMidRoot.append(new MechanismLigament2d("rMid", 3, 0));
+        this.rBot = rBotRoot.append(new MechanismLigament2d("rBot", 3, 0));
+        this.rTopR = rTopRRoot.append(new MechanismLigament2d("rTopRRoot", 3, 90));
+        this.rBotR = rBotRRoot.append(new MechanismLigament2d("rBotRRoot", 3, 90));
+        this.rTopL = rTopLRoot. append(new MechanismLigament2d("rTopLRoot", 3, 90));
+        this.rBotL = rBotLRoot. append(new MechanismLigament2d("rBotLRoot", 3, 90));
         
         SmartDashboard.putData("PONG", court);       
     }
