@@ -1,5 +1,6 @@
 package frc.robot.pong;
 
+import edu.wpi.first.wpilibj.smartdashboard.MechanismRoot2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 
@@ -13,13 +14,13 @@ public class PongGame {
     public boolean ballGoingRight = false;
     public boolean ballGoingUp = false;
 
-    public boolean lTopShow;
-    public boolean lMidShow;
-    public boolean lBotShow;
-    public boolean lTopRShow;
-    public boolean lBotRShow;
-    public boolean lTopLShow;
-    public boolean lBotLShow;
+    public static boolean lTopShow;
+    public static boolean lMidShow;
+    public static boolean lBotShow;
+    public static boolean lTopRShow;
+    public static boolean lBotRShow;
+    public static boolean lTopLShow;
+    public static boolean lBotLShow;
 
     public int leftScore;
     public int rightScore;
@@ -183,13 +184,35 @@ public class PongGame {
         //  */
     }
 
-    public double checkForScoreShow(String stickName) {
+    public static  double checkForScoreShow(String stickName) {
         if (stickName == "lTop") {
             return (lTopShow) ? 50 : 1000;
         }
         if (stickName == "lMid") {
             return (lMidShow) ? 50: 1000;
         }
+        if (stickName == "lBot") {
+            return (lMidShow) ? 50: 1000;
+        }
+        if (stickName == "lTopR") {
+            return (lMidShow) ? 54: 1000;
+        }
+        if (stickName == "lBotR") {
+            return (lMidShow) ? 54: 1000;
+        }
+        if (stickName == "lTopL") {
+            return (lMidShow) ? 49: 1000;
+        }
+        if (stickName == "lBotL") {
+            return (lMidShow) ? 49: 1000;
+        }
+    //     private final MechanismRoot2d lTopRoot = court.getRoot("lTopRoot", 50, 50);
+    // private final MechanismRoot2d lMidRoot = court.getRoot("lMidRoot", 50, 45);
+    // private final MechanismRoot2d lBotRoot = court.getRoot("lBotRoot", 50, 40);
+    // private final MechanismRoot2d lTopRRoot = court.getRoot("lTopRRoot", 54, 46);
+    // private final MechanismRoot2d lBotRRoot = court.getRoot("lBotRRoot", 54, 41);
+    // private final MechanismRoot2d lTopLRoot = court.getRoot("lTopLRoot", 49, 46);
+    // private final MechanismRoot2d lBotLRoot = court.getRoot("lBotLRoot", 49, 41);
         else {
             System.out.println("Not working");
             return 0;

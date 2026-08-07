@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class PongVisualizer {
     private final Mechanism2d court = new Mechanism2d(PongConstants.COURT_WIDTH, PongConstants.COURT_HEIGHT);
-    public PongGame ponggame;
+    
 
     private final MechanismRoot2d leftPaddleRoot = court.getRoot("leftPaddleRoot", 0, PongConstants.COURT_HEIGHT / 2);
     private final MechanismRoot2d rightPaddleRoot = court.getRoot("rightPaddleRoot", PongConstants.COURT_WIDTH, PongConstants.COURT_HEIGHT / 2);
@@ -81,6 +81,12 @@ public class PongVisualizer {
         leftPaddleRoot.setPosition(PongConstants.LEFT_PADDLE_X, PongConstants.COURT_HEIGHT / 2 - PongConstants.PADDLE_SIZE / 2 + data.leftPaddlePosition());
         rightPaddleRoot.setPosition(PongConstants.RIGHT_PADDLE_X, PongConstants.COURT_HEIGHT / 2 - PongConstants.PADDLE_SIZE / 2 + data.rightPaddlePosition());
         ballRoot.setPosition(data.ballX(), data.ballY());
-        // lTopRoot.setPosition(ponggame.checkForScoreShow("lTop"), 50);
+        lTopRoot.setPosition(PongGame.checkForScoreShow("lTop"), 50);
+        lMidRoot.setPosition(PongGame.checkForScoreShow("lMid"), 45);
+        lBotRoot.setPosition(PongGame.checkForScoreShow("lBot"), 40);
+        lTopRRoot.setPosition(PongGame.checkForScoreShow("lTopR"), 46);
+        lBotRRoot.setPosition(PongGame.checkForScoreShow("lBotR"), 41);
+        lTopLRoot.setPosition(PongGame.checkForScoreShow("lTopL"), 46);
+        lBotLRoot.setPosition(PongGame.checkForScoreShow("lBotL"), 41);
     }
 }
