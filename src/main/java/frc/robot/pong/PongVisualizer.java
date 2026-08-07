@@ -88,5 +88,13 @@ public class PongVisualizer {
         lBotRRoot.setPosition(PongGame.checkForScoreShow("lBotR"), 41);
         lTopLRoot.setPosition(PongGame.checkForScoreShow("lTopL"), 46);
         lBotLRoot.setPosition(PongGame.checkForScoreShow("lBotL"), 41);
+
+        rTopRoot.setPosition(PongGame.checkForScoreShow("rTop"), 50);
+        rMidRoot.setPosition(PongGame.checkForScoreShow("rMid"), 45);
+        rBotRoot.setPosition(PongGame.checkForScoreShow("rBot"), 40);
+        rTopRRoot.setPosition(PongGame.checkForScoreShow("rTopR"), 46);
+        rBotRRoot.setPosition(PongGame.checkForScoreShow("rBotR"), 41);
+        rTopLRoot.setPosition(PongGame.checkForScoreShow("rTopL"), 46);
+        rBotLRoot.setPosition(PongGame.checkForScoreShow("rBotL"), 41);
     }
 }
