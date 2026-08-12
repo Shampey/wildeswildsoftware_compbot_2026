@@ -272,6 +272,8 @@ public class PongGame {
             lTBotRShow = true;
             lTTopLShow = true;
             lTBotLShow = false;
+        } else if (leftScore - leftScore % 10 == 100) {
+            System.out.println("Left wins!");
         }
         //___________________________--
 
@@ -355,8 +357,8 @@ public class PongGame {
             rBotRShow = true;
             rTopLShow = true;
             rBotLShow = false;
-        } else {
-            // System.out.println("Right wins");
+        } else if (rightScore - rightScore % 10 == 100) {
+            System.out.println("Right wins");
         }
         //___________________________-
         if (rightScore % 10 == 0) {
